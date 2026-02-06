@@ -24,11 +24,11 @@ const productSchema = new mongoose.Schema({
         requiered : true,
         unique : true,
     },
-    description: {
+    descripcion: {
         type : String,
         requiered : true,
     },
-    image: {
+    imagen: {
         type : String,
         requiered : true,
     },
