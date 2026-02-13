@@ -4,29 +4,40 @@ const editProduct = require('../helpers/editProduct');
 const Product = require('../models/Product');
 const newProductTemplate = require('../templates/newProducts');
 const deleteProduct = require('../helpers/deleteProduct');
+const baseHtml = require('../helpers/baseHtml');
+const Category = require('../models/Category');
 const productController = {
-    getProductsDashboard: async (req, res) => {
+    getAllProducts: async (req, res) => {
         const products = await Product.find();
-        if (!products) {
+        const categories = await Product.distinct("categoria");
+                if (!products) {
           return res.json({ message: "Products not found" });
         }
-        const dashboardHtml = dashboard(products);
+        const dashboardHtml = baseHtml(products, categories);
         return res.send(dashboardHtml);
+
       },
       getNewDashboard:(req,res) => {
         res.send(newProductTemplate);
       },
       getEditProduct:  async (req, res) => {
         const {id} = req.params;
-        const html = editProduct(id);
-        res.send(html)
+        const product = await Product.findById(id);
+    const html = editProduct(product);
+    res.send(html)
+    //res.redirect('/dashboard');    
+
       },
       getProducts: async (req,res) => {
         try{
             const products = await Product.find();
-            if(!products)
-            return res.status(404).json({error : 'products not available'})
-        res.json(products);
+            const categorias = await Product.distinct("categoria");
+            if(!products){ 
+            return res.status(404).json({error : 'products not available'})}
+          const html = baseHtml(products, categorias);  
+          console.log(products, categorias);
+
+        res.send(html);
     }catch(error){
         console.error(error.message);
         res.status(500).json({error : 'Error getting the products'})
@@ -43,7 +54,8 @@ const productController = {
                 talla,
                 precio
             })
-            res.status(201).json(newProduct);
+            res.redirect('/dashboard');
+            //res.status(201).json(newProduct);
             console.log('product created successfully')
             
         } catch (error) {
@@ -95,20 +107,20 @@ const productController = {
         const {nombre, descripcion, imagen, categoria, talla, precio} = req.body;
         
         try {
-            const updatedProduct = await Product.findByIdAndUpdate(
-                id,{
+            const updatedProduct = await Product.findByIdAndUpdate(id,
+                {
                     nombre,
                     descripcion,
                     imagen,
                     categoria,
                     talla,
                     precio,
-                },{new: true});
+                }, {new: true});
                 if(!updatedProduct){
                     return res.status(404).json({error : 'product not found'})
                 }
                 res.redirect('/dashboard');
-                res.json(updatedProduct)
+                //res.json(updatedProduct)
             } catch (error) {
                 console.error(error.message);
                 res.status(500).json(error.message);
@@ -125,9 +137,33 @@ const productController = {
                 } catch (error) {
                     console.error(error.message);
                     res.status(500).json(error.message);
-                }}
+                }},
+                getProductsByCategoria: async (req, res) => {
+                    const { categoria } = req.params;
+                
+                    try {
+                        const products = await Product.find({ categoria });
+                
+                        if (!products || products.length === 0) {
+                            return res.status(404).send("No hay productos en esta categoría");
+                        }
+                        const categories = await Product.distinct("categoria");
+                
+                        const html = baseHtml(products, categories);
+                
+                        res.send(html);
+                
+                    } catch (error) {
+                        console.error(error);
+                        res.status(500).json({ error: 'Error getting products by category' });
+                    }
+                }     
 
 };
 
 
 module.exports = productController;
+
+
+
+

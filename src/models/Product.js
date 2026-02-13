@@ -15,7 +15,7 @@
 
 const mongoose = require('mongoose');
 
-const validCategorias = ['Camisetas', 'Pantalones', 'Pantalones', 'Zapatos', 'Accesorios'];  // enum de colores
+const validCategorias = ['Camisetas', 'Pantalones', 'Zapatos', 'Accesorios'];  // enum de colores
 const validTallas = ['XS', 'S', 'M', 'L', 'XL'];  
 
 const productSchema = new mongoose.Schema({

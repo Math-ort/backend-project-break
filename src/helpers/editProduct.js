@@ -1,5 +1,5 @@
 
-const editProduct =  (Id)=>{
+const editProduct = (product) => {
   const html =`
   <!DOCTYPE html>
   <html lang="es">
@@ -15,7 +15,8 @@ const editProduct =  (Id)=>{
   </head>
   <body>
     <h1>Editar producto</h1>
-    <form action="/dashboard/${Id}?_method=PUT" method="POST" >
+    <form action="/dashboard/${product._id}?_method=PUT" method="POST">
+
 
       <label for="nombre">Nombre</label>
       <input type="text" id="nombre" name="nombre" required>
@@ -24,10 +25,10 @@ const editProduct =  (Id)=>{
       <input type="number" id="precio" name="precio" min="0" step="0.01" required>
 
       <label for="categoria">Categoria </label>
-      <input type="text" id="categoria" name="categoria" required placeholder="Ejemplo: Camisetas', Pantalones, Pantalones, Zapatos, Accesorios">
+      <input type="text" id="categoria" name="categoria" required placeholder= "Ejemplo: Camisetas, Pantalones, Zapatos, Accesorios">
       
       <label for="talla">Talla </label>
-      <input type="text" id="talla" name="talla" required placeholder="Ejamplo: XS S M L XL ">
+      <input type="text" id="talla" name="talla" required placeholder= "Ejemplo: XS S M L XL ">
 
       <label for="descripcion">Descripcion</label>
       <input type="text" id="descripcion" name="descripcion" required>
