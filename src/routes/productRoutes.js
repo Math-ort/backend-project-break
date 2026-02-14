@@ -2,7 +2,12 @@
 const express = require('express');
 const productRouter = express.Router();
 const productController = require('../controllers/productController');
-const baseHtml = require('../helpers/baseHtml');
+const authController = require('../controllers/authController');
+const userController = require('../controllers/userController');
+const auth = require('../middlewares/authMiddleware');
+const upload = require('../middlewares/uploadCloudinaryMiddleware');
+
+
 
 //ruta opcional para comprobar que el router funciona, se puede eliminar posteriormente
 productRouter.get('/', productController.getProducts);
@@ -12,39 +17,54 @@ productRouter.get('/', productController.getProducts);
 
 productRouter.get("/dashboard", productController.getAllProducts);
 
-// -GET productos por categoria:
-productRouter.get('/products/category/:categoria', productController.getProductsByCategoria);
-
 //- GET /dashboard/new: Devuelve el formulario para subir un artículo nuevo.
 productRouter.get("/dashboard/new",productController.getNewDashboard);
 
-// - DELETE /dashboard/:productId/delete: Elimina un producto.
-productRouter.get("/dashboard/:productId/delete", productController.getFormDeleteProduct);
+//login 
+productRouter.get('/login', authController.getLoginForm);
+
 //- GET /dashboard/:productId/edit: Devuelve el formulario para editar un producto.
 productRouter.get('/dashboard/:id/edit', productController.getEditProduct);
 
+// LOGIN POST
+//TODO: crear ruta get 
+productRouter.post('/login', auth);
+
+
+//crear usuario:
+productRouter.get('/crearusuario', userController.createNewUser)
+
+productRouter.post('/crearusuario', userController.crearUsuario);
+
+
+// - DELETE /dashboard/:productId/delete: Elimina un producto.
+productRouter.get("/dashboard/:productId/delete", productController.getFormDeleteProduct);
+
+
+// -GET productos por categoria:
+productRouter.get('/products/category/:categoria', productController.getProductsByCategoria);
 
 //- POST /dashboard: Crea un nuevo producto.
 
-productRouter.post('/dashboard', productController.crearNuevoProducto);
-
-//- GET /products/:productId: Devuelve el detalle de un producto.
-//TODO revisar esta ruta
-productRouter.get('/products/:id', productController.detalleProductId);
-
-//- GET /dashboard/:productId: Devuelve el detalle de un producto en el dashboard.
-productRouter.get('/dashboard/:id',productController.dashboardDetalleProduct);
+productRouter.post('/dashboard', upload.single('image'), productController.crearNuevoProducto);
 
 
 //- PUT /dashboard/:productId: Actualiza un producto.
 
-productRouter.put('/dashboard/:id',productController.actualizarProducto);
-        
-        
+productRouter.put('/dashboard/:id', upload.single('image'), productController.actualizarProducto);
+
+//- GET /dashboard/:productId: Devuelve el detalle de un producto en el dashboard.
+productRouter.get('/dashboard/:id',productController.dashboardDetalleProduct);
+
 //- DELETE /dashboard/:productId/delete: Elimina un producto.
-        
+
 productRouter.delete('/dashboard/delete/:id', productController.deleteProduct);
-            
-            
-            
+
+//- GET /products/:productId: Devuelve el detalle de un producto.
+//TODO: revisar esta ruta
+//productRouter.get('/products/:id', productController.detalleProductId);
+
+
+
 module.exports = productRouter;
+

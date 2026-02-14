@@ -18,6 +18,7 @@ const productController = {
 
       },
       getNewDashboard:(req,res) => {
+        console.log("ENTRANDO A EDIT");
         res.send(newProductTemplate);
       },
       getEditProduct:  async (req, res) => {
@@ -25,8 +26,7 @@ const productController = {
         const product = await Product.findById(id);
     const html = editProduct(product);
     res.send(html)
-    //res.redirect('/dashboard');    
-
+      
       },
       getProducts: async (req,res) => {
         try{
@@ -35,8 +35,7 @@ const productController = {
             if(!products){ 
             return res.status(404).json({error : 'products not available'})}
           const html = baseHtml(products, categorias);  
-          console.log(products, categorias);
-
+          
         res.send(html);
     }catch(error){
         console.error(error.message);
@@ -44,47 +43,46 @@ const productController = {
     }
     },
     crearNuevoProducto: async (req, res) => {
-        const {nombre, descripcion, imagen, categoria, talla, precio} = req.body;
+        const { nombre, descripcion, categoria, talla, precio } = req.body;
         try {
-            const newProduct = await Product.create({
-                nombre,
-                descripcion,
-                imagen,
-                categoria,
-                talla,
-                precio
-            })
-            res.redirect('/dashboard');
-            //res.status(201).json(newProduct);
-            console.log('product created successfully')
-            
+          const newProduct = await Product.create({
+            nombre,
+            descripcion,
+            imagen: req.file ? req.file.path : null,
+            categoria,
+            talla,
+            precio,
+          });
+          console.log(newProduct);
+          return res.redirect("/dashboard");
         } catch (error) {
-            console.error(error.message);
-            res.status(500).json(error)
-        } 
-    },getFormDeleteProduct: async (req, res) => {
+          console.error(error.messsage);
+          return res.status(500).json(error);
+        }
+      },
+      getFormDeleteProduct: async (req, res) => {
         const { productId } = req.params;
         const product = await Product.findById(productId);
         const html = deleteProduct(product);
         res.send(html);
       },
-    detalleProductId:  async (req, res) => {
-        try {
-            const { id } = req.params;
-            
-            const product = await Product.findById(id);
-            
-            if (!product) {
-                return res.status(404).json({ error: 'product not found' });
-            }
-            
-            res.json(product);
-            
-        } catch (error) {
-            console.error(error.message);
-            res.status(500).json({ error: 'error getting product' });
-        }
-    },
+// detalleProductId:  async (req, res) => {
+//     try {
+//         const { id } = req.params;
+//         
+//        const product = await Product.findById(id);
+//        
+//         if (!product) {
+//             return res.status(404).json({ error: 'product not found' });
+//         }
+//         
+//         res.json(product);
+//         
+//    } catch (error) {
+//         console.error(error.message);
+//         res.status(500).json({ error: 'error getting product' });
+//     }
+    //},
     dashboardDetalleProduct: async (req, res) => {
         try {
             const { id } = req.params;
@@ -95,36 +93,44 @@ const productController = {
                 return res.status(404).json({ error: 'product not found' });
             }
             
-            res.json(product);
+            const html = productDetail(product);
+            res.send(html);
             
         } catch (error) {
             console.error(error.message);
             res.status(500).json({ error: 'error getting product' });
         }
     },
-    actualizarProducto:  async (req, res) => {
+    actualizarProducto: async (req, res) => {
         const { id } = req.params;
-        const {nombre, descripcion, imagen, categoria, talla, precio} = req.body;
-        
+        const { nombre, descripcion, categoria, talla, precio } = req.body;
+    
         try {
-            const updatedProduct = await Product.findByIdAndUpdate(id,
-                {
-                    nombre,
-                    descripcion,
-                    imagen,
-                    categoria,
-                    talla,
-                    precio,
-                }, {new: true});
-                if(!updatedProduct){
-                    return res.status(404).json({error : 'product not found'})
-                }
-                res.redirect('/dashboard');
-                //res.json(updatedProduct)
-            } catch (error) {
-                console.error(error.message);
-                res.status(500).json(error.message);
-            }},
+          const newProduct = await Product.findByIdAndUpdate(
+            id,
+            {
+              nombre,
+              descripcion,
+              imagen: req.file ? req.file.path : undefined,
+              categoria,
+              talla,
+              precio,
+            },
+            {
+              new: true, //para que traiga el documento actualizado
+            },
+          );
+          if (!newProduct) {
+            return res.status(404).json({ error: "Product not found" });
+          }
+          console.log(newProduct);
+          return res.redirect("/dashboard");
+          //res.json(newProduct);
+        } catch (error) {
+          console.error(error.message);
+          res.status(500).json(error.message);
+        }
+      },
             deleteProduct: async(req, res) => {
                 const { id } = req.params;
                 try {
@@ -157,8 +163,8 @@ const productController = {
                         console.error(error);
                         res.status(500).json({ error: 'Error getting products by category' });
                     }
-                }     
-
+                
+                }
 };
 
 

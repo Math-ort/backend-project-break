@@ -8,7 +8,7 @@ const newProductTemplate = `
   </head>
   <body>
     <h1>Nuevo producto</h1>
-    <form action="/dashboard" method="POST" >>
+    <form action="/dashboard" method="POST"enctype="multipart/form-data">
 
       <label for="nombre">Nombre</label>
       <input type="text" id="nombre" name="nombre" required>
@@ -25,8 +25,8 @@ const newProductTemplate = `
       <label for="descripcion">Descripcion</label>
       <input type="text" id="descripcion" name="descripcion" required>
 
-      <label for="imagen">Imagen</label>
-      <input type="text" id="imagen" name="imagen" required>
+      <label for="image">Imagen</label>
+      <input type="file" id="image" name="image" required>
 
       <button type="submit">Guardar</button>
     </form>
@@ -36,5 +36,3 @@ const newProductTemplate = `
 `
 
 module.exports = newProductTemplate;
-
-

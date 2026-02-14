@@ -1,8 +1,4 @@
-const getNavBar = (categories) => {
-
-  const categoryLinks = categories.map(cat => {
-    return `<li><a href="/products/category/${cat.nombre}">${cat.nombre}</a></li>`
-  }).join('');
+const getNavBar =() => {
    return `
     <nav>
       <ul>

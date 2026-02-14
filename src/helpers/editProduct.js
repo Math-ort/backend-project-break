@@ -1,5 +1,5 @@
 
-const editProduct = (product) => {
+const editProduct = (id) => {
   const html =`
   <!DOCTYPE html>
   <html lang="es">
@@ -15,7 +15,7 @@ const editProduct = (product) => {
   </head>
   <body>
     <h1>Editar producto</h1>
-    <form action="/dashboard/${product._id}?_method=PUT" method="POST">
+    <form action="/dashboard/${id}?_method=PUT" method="POST" enctype="multipart/form-data">
 
 
       <label for="nombre">Nombre</label>
@@ -33,8 +33,8 @@ const editProduct = (product) => {
       <label for="descripcion">Descripcion</label>
       <input type="text" id="descripcion" name="descripcion" required>
 
-      <label for="imagen">Imagen</label>
-      <input type="text" id="imagen" name="imagen" required>
+      <label for="image">Imagen</label>
+      <input type="file" id="image" name="image" required>
 
       <button type="submit">Guardar</button>
     </form>

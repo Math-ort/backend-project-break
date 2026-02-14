@@ -1,5 +1,6 @@
 const getProducts = require('./productsCards');
 const getNavBar = require('./getNavBar');
+const getProductCards = require('./productsCards');
 const baseHtml = (products, categories) => 
     `
       <!DOCTYPE html>
@@ -15,7 +16,7 @@ const baseHtml = (products, categories) =>
           <title>Mi tienda</title>
         </head>
         <header>
-     ${getNavBar(categories)}
+        ${getNavBar()}
         </header>
         <body>
           <h1>Productos</h1>
