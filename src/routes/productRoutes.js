@@ -9,26 +9,28 @@ const upload = require('../middlewares/uploadCloudinaryMiddleware');
 
 
 
+
 //ruta opcional para comprobar que el router funciona, se puede eliminar posteriormente
 productRouter.get('/', productController.getProducts);
 
 //- GET /dashboard: Devuelve el dashboard del administrador. En el dashboard aparecerán todos los artículos que se hayan subido. 
 //Si clickamos en uno de ellos nos llevará a su página para poder actualizarlo o eliminarlo.
 
-productRouter.get("/dashboard", productController.getAllProducts);
+productRouter.get("/dashboard", auth, productController.getAllProducts);
 
 //- GET /dashboard/new: Devuelve el formulario para subir un artículo nuevo.
-productRouter.get("/dashboard/new",productController.getNewDashboard);
+productRouter.get("/dashboard/new",auth, productController.getNewDashboard);
 
 //login 
 productRouter.get('/login', authController.getLoginForm);
 
 //- GET /dashboard/:productId/edit: Devuelve el formulario para editar un producto.
-productRouter.get('/dashboard/:id/edit', productController.getEditProduct);
+productRouter.get('/dashboard/:id/edit',auth, productController.getEditProduct);
 
 // LOGIN POST
 //TODO: crear ruta get 
-productRouter.post('/login', auth);
+productRouter.post('/login', authController.login);
+productRouter.get('/loggin' , authController.getLoginForm);
 
 
 //crear usuario:
@@ -38,7 +40,7 @@ productRouter.post('/crearusuario', userController.crearUsuario);
 
 
 // - DELETE /dashboard/:productId/delete: Elimina un producto.
-productRouter.get("/dashboard/:productId/delete", productController.getFormDeleteProduct);
+productRouter.get("/dashboard/:productId/delete", auth, productController.getFormDeleteProduct);
 
 
 // -GET productos por categoria:
@@ -46,19 +48,19 @@ productRouter.get('/products/category/:categoria', productController.getProducts
 
 //- POST /dashboard: Crea un nuevo producto.
 
-productRouter.post('/dashboard', upload.single('image'), productController.crearNuevoProducto);
+productRouter.post('/dashboard', upload.single('image'), auth, productController.crearNuevoProducto);
 
 
 //- PUT /dashboard/:productId: Actualiza un producto.
 
-productRouter.put('/dashboard/:id', upload.single('image'), productController.actualizarProducto);
+productRouter.put('/dashboard/:id', upload.single('image'), auth, productController.actualizarProducto);
 
 //- GET /dashboard/:productId: Devuelve el detalle de un producto en el dashboard.
-productRouter.get('/dashboard/:id',productController.dashboardDetalleProduct);
+productRouter.get('/dashboard/:id', auth, productController.dashboardDetalleProduct);
 
 //- DELETE /dashboard/:productId/delete: Elimina un producto.
 
-productRouter.delete('/dashboard/delete/:id', productController.deleteProduct);
+productRouter.delete('/dashboard/delete/:id', auth, productController.deleteProduct);
 
 //- GET /products/:productId: Devuelve el detalle de un producto.
 //TODO: revisar esta ruta
