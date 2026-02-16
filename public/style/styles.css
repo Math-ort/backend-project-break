@@ -232,3 +232,67 @@ form input:focus {
   outline: none;
   border-bottom: 1px solid #111;
 }
+
+/* CONTENEDOR FORM */
+.form-container {
+  max-width: 500px;
+  margin: 60px auto;
+}
+
+/* GRUPOS */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #444;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="file"] {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 8px 0;
+  font-size: 14px;
+  background: transparent;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-bottom: 1px solid #111;
+}
+
+/* BOTÓN PRINCIPAL */
+.primary-btn {
+  margin-top: 20px;
+  padding: 10px 0;
+  border: 1px solid #111;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.primary-btn:hover {
+  background: #111;
+  color: white;
+}
+
+/* LINK VOLVER */
+.back-link {
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+.back-link a {
+  color: #555;
+}
+
+.back-link a:hover {
+  color: #111;
+}

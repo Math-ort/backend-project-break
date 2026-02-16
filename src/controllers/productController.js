@@ -27,7 +27,7 @@ const productController = {
         const product = await Product.findById(id);
     const html = editProduct(product);
     res.send(html)
-      
+
       },
       getProducts: async (req,res) => {
         try{
