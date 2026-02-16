@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/Math-ort/backend-project-break#readme",
   "dependencies": {
-    "cloudinary": "^1.41.0",
+    "cloudinary": "^1.41.3",
     "dotenv": "^17.2.4",
     "express": "^5.2.1",
     "express-session": "^1.19.0",

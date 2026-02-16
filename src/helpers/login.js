@@ -5,7 +5,7 @@ const login = (product) => {
     <html lang="es">
   <head>
   <meta charset="UTF-8">
- 
+  <link rel="stylesheet" href="/style/styles.css">
   <title> Iniciar sesion</title>
     </head>
     <body>

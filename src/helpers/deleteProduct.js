@@ -4,6 +4,7 @@ const deleteProduct =  (product)=>{
     <html lang="es">
       <head>
        <meta charset="UTF-8">
+       <link rel="stylesheet" href="/style/styles.css">
         <meta http-equiv="Content-Security-Policy"
         content="default-src 'self';
         connect-src 'self' http://localhost:4000;
@@ -20,6 +21,7 @@ const deleteProduct =  (product)=>{
           <button type="submit">ELIMINAR</button>
         </form>
         <p><a href="/dashboard">← Volver al dashboard</a></p>
+
       </body>
     </html>
   `;

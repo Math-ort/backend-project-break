@@ -14,7 +14,7 @@ const categoryTemplate = (products, categoria) => {
     
     <a href="/">Volver al inicio</a>
     
-    <div>
+    <div class="products-container">
     
     ${products.map(product => `
         <div style="border:1px solid black; padding:10px; margin:10px">
@@ -27,7 +27,7 @@ const categoryTemplate = (products, categoria) => {
     `).join("")}
     
     </div>
-    
+    <link rel="stylesheet" href="/style/styles.css">
     </body>
     </html>
     `;

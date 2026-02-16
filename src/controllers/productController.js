@@ -1,11 +1,13 @@
 
-const dashboard = require('../helpers/dashboard');
+//const dashboard = require('../helpers/dashboard');
 const editProduct = require('../helpers/editProduct');
 const Product = require('../models/Product');
 const newProductTemplate = require('../templates/newProducts');
 const deleteProduct = require('../helpers/deleteProduct');
 const baseHtml = require('../helpers/baseHtml');
 const Category = require('../models/Category');
+const productDetail = require('../helpers/productDetails');
+
 const productController = {
     getAllProducts: async (req, res) => {
         const products = await Product.find();
@@ -18,7 +20,6 @@ const productController = {
 
       },
       getNewDashboard:(req,res) => {
-        console.log("ENTRANDO A EDIT");
         res.send(newProductTemplate);
       },
       getEditProduct:  async (req, res) => {
@@ -48,12 +49,14 @@ const productController = {
           const newProduct = await Product.create({
             nombre,
             descripcion,
-            imagen: req.file ? req.file.path : null,
+imagen: req.file ? `/uploads/${req.file.filename}` : undefined,
             categoria,
             talla,
             precio,
           });
           console.log(newProduct);
+          console.log(req.body);
+          console.log(req.file);
           return res.redirect("/dashboard");
         } catch (error) {
           console.error(error.messsage);
@@ -66,23 +69,6 @@ const productController = {
         const html = deleteProduct(product);
         res.send(html);
       },
-// detalleProductId:  async (req, res) => {
-//     try {
-//         const { id } = req.params;
-//         
-//        const product = await Product.findById(id);
-//        
-//         if (!product) {
-//             return res.status(404).json({ error: 'product not found' });
-//         }
-//         
-//         res.json(product);
-//         
-//    } catch (error) {
-//         console.error(error.message);
-//         res.status(500).json({ error: 'error getting product' });
-//     }
-    //},
     dashboardDetalleProduct: async (req, res) => {
         try {
             const { id } = req.params;
@@ -131,7 +117,7 @@ const productController = {
           res.status(500).json(error.message);
         }
       },
-            deleteProduct: async(req, res) => {
+        deleteProduct: async(req, res) => {
                 const { id } = req.params;
                 try {
                     const product = await Product.findByIdAndDelete(id);

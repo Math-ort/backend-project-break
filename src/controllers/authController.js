@@ -1,4 +1,5 @@
 const login = require('../helpers/login');
+const User = require('../models/User');
 
 const authController = {
     getLoginForm:  (req, res) => {
@@ -10,7 +11,7 @@ const authController = {
         const { email, password } = req.body;
         //verificar si es admin
         if (
-            email === process.env.ADMIN_USER &&
+            email === process.env.ADMIN_USERNAME &&
             password === process.env.ADMIN_PASSWORD
             ) {
                 req.session.isLogged = true;

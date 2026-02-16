@@ -6,6 +6,7 @@ const dashboard = (Id) => {
       <html lang="es">
         <head>
          <meta charset="UTF-8">
+         <link rel="stylesheet" href="/style/styles.css">
          <meta http-equiv="Content-Security-Policy"
         content="default-src 'self';
         connect-src 'self' http://localhost:4000;
@@ -17,8 +18,9 @@ const dashboard = (Id) => {
         <body>
           <h1>Productos</h1>
           ${getProducts(Id)}
-  
+
           </body>
+          
       </html>
     `;
     return html;

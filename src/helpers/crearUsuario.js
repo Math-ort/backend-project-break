@@ -5,7 +5,7 @@ const crearusuario = (product) => {
   <html lang="es">
 <head>
 <meta charset="UTF-8">
-
+<link rel="stylesheet" href="/style/styles.css">
 <title> Crear Usuario </title>
   </head>
   <body>
@@ -22,7 +22,7 @@ const crearusuario = (product) => {
     <p><a href="/#"> Inicio </a></p>
     <p><a href="/login"> Si ya tienes cuenta </a></p>
 
-
+  </body>
 </html>
 `;
 return html;

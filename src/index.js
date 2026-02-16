@@ -3,22 +3,24 @@ const dotenv = require('dotenv');
 dotenv.config();// lectura variables entorno
 const helmet = require('helmet');
 const methodOverride = require('method-override');
+const session = require('express-session');
+
 const app = express();
 const productRouter = require('./routes/productRoutes');
-const session = require('express-session');
 const {dbConnection} = require('./config/db');
 
 app.use(helmet({contentSecurityPolicy: false,}));
-app.use(methodOverride('_method')); 
-dbConnection();
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method')); 
 app.use(session({//para guardar los datos en sesion 
-    secret: "mi_secret",
-    resave: false,
-    saveUninitialized: false,
-    }),
-  );
+  secret: "mi_secret",
+  resave: false,
+  saveUninitialized: false,
+}),
+);
+app.use(express.static('public'));
+dbConnection();
 app.use('/', productRouter);
 
 

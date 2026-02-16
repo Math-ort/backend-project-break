@@ -30,6 +30,7 @@ productRouter.get('/dashboard/:id/edit',auth, productController.getEditProduct);
 // LOGIN POST
 //TODO: crear ruta get 
 productRouter.post('/login', authController.login);
+
 productRouter.get('/loggin' , authController.getLoginForm);
 
 
@@ -48,24 +49,19 @@ productRouter.get('/products/category/:categoria', productController.getProducts
 
 //- POST /dashboard: Crea un nuevo producto.
 
-productRouter.post('/dashboard', upload.single('image'), auth, productController.crearNuevoProducto);
+productRouter.post('/dashboard', upload.single('image'), productController.crearNuevoProducto);
 
 
 //- PUT /dashboard/:productId: Actualiza un producto.
 
-productRouter.put('/dashboard/:id', upload.single('image'), auth, productController.actualizarProducto);
-
-//- GET /dashboard/:productId: Devuelve el detalle de un producto en el dashboard.
-productRouter.get('/dashboard/:id', auth, productController.dashboardDetalleProduct);
+productRouter.put('/dashboard/:id', auth, upload.single('image'), productController.actualizarProducto);
 
 //- DELETE /dashboard/:productId/delete: Elimina un producto.
 
 productRouter.delete('/dashboard/delete/:id', auth, productController.deleteProduct);
 
-//- GET /products/:productId: Devuelve el detalle de un producto.
-//TODO: revisar esta ruta
-//productRouter.get('/products/:id', productController.detalleProductId);
-
+//- GET /dashboard/:productId: Devuelve el detalle de un producto en el dashboard.
+productRouter.get('/dashboard/:id', auth, productController.dashboardDetalleProduct);
 
 
 module.exports = productRouter;

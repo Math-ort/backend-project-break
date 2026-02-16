@@ -1,10 +1,12 @@
 
-const editProduct = (id) => {
+const editProduct = (producto) => {
+  const productId = producto?._id || producto?.id || producto;
   const html =`
   <!DOCTYPE html>
   <html lang="es">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/style/styles.css">
 <meta http-equiv="Content-Security-Policy"
         content="default-src 'self';
         connect-src 'self' http://localhost:4000;
@@ -15,8 +17,7 @@ const editProduct = (id) => {
   </head>
   <body>
     <h1>Editar producto</h1>
-    <form action="/dashboard/${id}?_method=PUT" method="POST" enctype="multipart/form-data">
-
+    <form action="/dashboard/${productId}?_method=PUT" method="POST" >
 
       <label for="nombre">Nombre</label>
       <input type="text" id="nombre" name="nombre" required>
@@ -34,12 +35,13 @@ const editProduct = (id) => {
       <input type="text" id="descripcion" name="descripcion" required>
 
       <label for="image">Imagen</label>
-      <input type="file" id="image" name="image" required>
+      <input type="file" id="image" name="image">
 
       <button type="submit">Guardar</button>
     </form>
     <p><a href="/dashboard"> ← Volver al dashboard</a></p>
   </body>
+
 </html>
 `;
 return html;
@@ -47,3 +49,8 @@ return html;
 
 
 module.exports = editProduct;
+
+
+
+
+//enctype="multipart/form-data"
