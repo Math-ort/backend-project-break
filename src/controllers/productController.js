@@ -15,9 +15,8 @@ const productController = {
                 if (!products) {
           return res.json({ message: "Products not found" });
         }
-        const dashboardHtml = baseHtml(products, categories);
+        const dashboardHtml = baseHtml(products, categories, "home");
         return res.send(dashboardHtml);
-
       },
       getNewDashboard:(req,res) => {
         res.send(newProductTemplate);

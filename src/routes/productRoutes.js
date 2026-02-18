@@ -7,9 +7,6 @@ const userController = require('../controllers/userController');
 const auth = require('../middlewares/authMiddleware');
 const upload = require('../middlewares/uploadCloudinaryMiddleware');
 
-
-
-
 //ruta opcional para comprobar que el router funciona, se puede eliminar posteriormente
 productRouter.get('/', productController.getProducts);
 
@@ -28,7 +25,6 @@ productRouter.get('/login', authController.getLoginForm);
 productRouter.get('/dashboard/:id/edit',auth, productController.getEditProduct);
 
 // LOGIN POST
-//TODO: crear ruta get 
 productRouter.post('/login', authController.login);
 
 productRouter.get('/loggin' , authController.getLoginForm);

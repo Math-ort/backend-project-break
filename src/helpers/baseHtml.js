@@ -1,8 +1,10 @@
 const getProducts = require('./productsCards');
 const getNavBar = require('./getNavBar');
 const getProductCards = require('./productsCards');
-const baseHtml = (products, categories) => 
-    `
+
+const baseHtml = (products, categories, view = "") => {
+const category = products[0].categoria;
+   return `
       <!DOCTYPE html>
       <html lang="es">
         <head>
@@ -20,10 +22,12 @@ const baseHtml = (products, categories) =>
         <header>
         ${getNavBar()}
         </header>
+        ${view!== 'home'? `<h1>${category}</h1>` : `<h1> Productos </h1>`}
+        
         <body>
-          <h1>Productos</h1>
           ${getProducts(products)}
           </body>
       </html>
-    `
+  `}
+    
   module.exports = baseHtml;
