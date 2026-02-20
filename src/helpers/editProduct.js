@@ -1,10 +1,13 @@
-
+const  getNavBar  = require('./getNavBar');
 const editProduct = (producto) => {
   const productId = producto?._id || producto?.id || producto;
   const html =`
   <!DOCTYPE html>
   <html lang="es">
 <head>
+<header>
+${getNavBar()}  
+</header>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/style/styles.css" />
 <meta http-equiv="Content-Security-Policy"

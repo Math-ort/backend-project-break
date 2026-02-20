@@ -16,6 +16,7 @@ const productController = {
           return res.json({ message: "Products not found" });
         }
         const dashboardHtml = baseHtml(products, categories, "home");
+        console.lohg(dashboardHtml);
         return res.send(dashboardHtml);
       },
       getNewDashboard:(req,res) => {
@@ -33,7 +34,7 @@ const productController = {
             const categorias = await Product.distinct("categoria");
             if(!products){ 
             return res.status(404).json({error : 'products not available'})}
-          const html = baseHtml(products, categorias);  
+          const html = baseHtml(products, categorias, "home");  
           
         res.send(html);
     }catch(error){

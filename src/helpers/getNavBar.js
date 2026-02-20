@@ -9,6 +9,8 @@ const getNavBar =() => {
     <li><a href="/products/category/Zapatos">Zapatos</a></li>
     <li><a href="/dashboard/new">Añadir producto</a></li>
     <li><a href="/login">Log in</a></li>
+     <li><a href="/logout">Logout</a></li>
+
     </ul>
 
         </nav>

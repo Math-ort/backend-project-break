@@ -1,7 +1,11 @@
+const getNavBar = require('./getNavBar');
 const newProductTemplate = `
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<header>
+${getNavBar()}  
+</header>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/style/styles.css" />
 <title>Nuevo producto</title>

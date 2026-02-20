@@ -3,7 +3,7 @@ const getNavBar = require('./getNavBar');
 const getProductCards = require('./productsCards');
 
 const baseHtml = (products, categories, view = "") => {
-const category = products[0].categoria;
+console.log(view);
    return `
       <!DOCTYPE html>
       <html lang="es">
@@ -18,16 +18,27 @@ const category = products[0].categoria;
         style-src 'self' 'unsafe-inline';
         form-action 'self';">
           <title>Mi tienda</title>
-        </head>
+          </head>
+          <body>
         <header>
         ${getNavBar()}
         </header>
-        ${view!== 'home'? `<h1>${category}</h1>` : `<h1> Productos </h1>`}
+        <h1 >
+        ${
+          view !== "home"
+            ? (products[0]?.categoria ?? "Productos")
+            : "Todos los productos"
+        }
+      </h1>
         
-        <body>
           ${getProducts(products)}
           </body>
       </html>
   `}
     
   module.exports = baseHtml;
+
+ 
+
+
+// ${view!== 'home'? `<h1>${products[0]?.categoria??'productos'}</h1>` : `<h1> Productos </h1>`}

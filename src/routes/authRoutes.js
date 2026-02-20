@@ -27,6 +27,9 @@ router.post('/login', authController.login);
 
 router.get('/loggin' , authController.getLoginForm);
 
+// LOG OUT
+router.get("/logout", authController.logout);
+
 
 // - DELETE /dashboard/:productId/delete: Elimina un producto.
 router.get("/dashboard/:productId/delete", auth, productController.getFormDeleteProduct);

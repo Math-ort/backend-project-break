@@ -1,8 +1,12 @@
 const productDetail = require("./productDetails");
+const getNavBar = require("./getNavBar");
 const deleteProduct =  (product)=>{
     const html =`<!DOCTYPE html>
     <html lang="es">
       <head>
+      <header>
+      ${getNavBar()}  
+  </header>
        <meta charset="UTF-8">
        <link rel="stylesheet" href="/style/styles.css" />
         <meta http-equiv="Content-Security-Policy"

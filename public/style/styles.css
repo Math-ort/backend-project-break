@@ -307,3 +307,25 @@ nav ul {
   gap: 50px;
 
 }
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 180px);
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.product-card {
+  width: 180px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background: white;
+  font-size: 14px;
+}
+
+.product-card img {
+  width: 120%;
+  height: 140px;
+  object-fit: cover;
+}

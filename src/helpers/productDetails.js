@@ -7,7 +7,7 @@ const productDetail = (product) => {
           <p>${product.precio}€</p>
           <a href="/dashboard/${product._id}/edit">Editar Producto</a>
           <a href="/dashboard/${product._id}/delete">Eliminar Producto</a>
-
+          </div>
     `;
     return html;
   };
