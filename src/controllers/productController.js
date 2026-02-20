@@ -2,7 +2,7 @@
 //const dashboard = require('../helpers/dashboard');
 const editProduct = require('../helpers/editProduct');
 const Product = require('../models/Product');
-const newProductTemplate = require('../templates/newProducts');
+const newProductTemplate = require('../helpers/newProducts');
 const deleteProduct = require('../helpers/deleteProduct');
 const baseHtml = require('../helpers/baseHtml');
 const Category = require('../models/Category');
@@ -26,8 +26,7 @@ const productController = {
         const product = await Product.findById(id);
     const html = editProduct(product);
     res.send(html)
-
-      },
+  },
       getProducts: async (req,res) => {
         try{
             const products = await Product.find();
@@ -48,7 +47,7 @@ const productController = {
           const newProduct = await Product.create({
             nombre,
             descripcion,
-imagen: req.file ? `/uploads/${req.file.filename}` : undefined,
+            imagen: req.file ? req.file.path : undefined,            
             categoria,
             talla,
             precio,
@@ -88,7 +87,7 @@ imagen: req.file ? `/uploads/${req.file.filename}` : undefined,
     },
     actualizarProducto: async (req, res) => {
         const { id } = req.params;
-        const { nombre, descripcion, categoria, talla, precio } = req.body;
+        const { nombre, descripcion, categoria, talla, precio, } = req.body;
     
         try {
           const newProduct = await Product.findByIdAndUpdate(
@@ -96,7 +95,7 @@ imagen: req.file ? `/uploads/${req.file.filename}` : undefined,
             {
               nombre,
               descripcion,
-              imagen: req.file ? req.file.path : undefined,
+            imagen: req.file ? req.file.path : undefined,            
               categoria,
               talla,
               precio,

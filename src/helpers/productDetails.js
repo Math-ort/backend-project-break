@@ -1,6 +1,5 @@
 const productDetail = (product) => {
     const html = `
-    <link rel="stylesheet" href="/style/styles.css">
            <div class="product-card">
            <img src="${product.imagen}" alt="${product.nombre}">
           <h2>${product.nombre}</h2>

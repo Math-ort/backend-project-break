@@ -3,7 +3,7 @@ const newProductTemplate = `
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="/style/styles.css" />
 <title>Nuevo producto</title>
   </head>
   <body>

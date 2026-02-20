@@ -43,7 +43,7 @@ router.put('/dashboard/:id', auth, upload.single('image'), productController.act
 router.delete('/dashboard/delete/:id', auth, productController.deleteProduct);
 
 //- GET /dashboard/:productId: Devuelve el detalle de un producto en el dashboard.
-router.get('/dashboard/:id', auth, productController.dashboardDetalleProduct);
+router.get('/dashboard/product/:id', auth, productController.dashboardDetalleProduct);
 
 
 module.exports = router;

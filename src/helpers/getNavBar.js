@@ -1,7 +1,6 @@
 const getNavBar =() => {
    return `
     <nav>
-    <link rel="stylesheet" href="/style/styles.css">
     <ul>
     <li><a href="/#">Productos</a></li>
     <li><a href="/products/category/Accesorios">Accesorios</a></li>

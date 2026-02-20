@@ -5,6 +5,7 @@ const categoryTemplate = (products, categoria) => {
     <html lang="es">
     <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/style/styles.css" />
     <title>${categoria}</title>
     </head>
     

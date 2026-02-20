@@ -6,7 +6,7 @@ const dashboard = (Id) => {
       <html lang="es">
         <head>
          <meta charset="UTF-8">
-         <link rel="stylesheet" href="/style/styles.css">
+         <link rel="stylesheet" href="/style/styles.css" />
          <meta http-equiv="Content-Security-Policy"
         content="default-src 'self';
         connect-src 'self' http://localhost:4000;

@@ -5,7 +5,7 @@ const crearusuario = (product) => {
   <html lang="es">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/style/styles.css">
+<link rel="stylesheet" href="/style/styles.css" />
 <title> Crear Usuario </title>
   </head>
   <body>
