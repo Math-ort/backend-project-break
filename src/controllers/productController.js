@@ -5,7 +5,6 @@ const Product = require('../models/Product');
 const newProductTemplate = require('../helpers/newProducts');
 const deleteProduct = require('../helpers/deleteProduct');
 const baseHtml = require('../helpers/baseHtml');
-const Category = require('../models/Category');
 const productDetail = require('../helpers/productDetails');
 
 const productController = {
