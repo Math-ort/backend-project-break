@@ -29,4 +29,4 @@ const crearUsuarioController = {
     }
 };
 
-module.exports = crearUsuarioController;
+module.exports = crearUsuarioController; 
