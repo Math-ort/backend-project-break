@@ -59,5 +59,5 @@ const createProductForm = (product) => {
 module.exports = createProductForm;
     
     
-    //enctype="multipart/form-data"
+
    

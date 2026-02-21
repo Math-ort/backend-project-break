@@ -5,22 +5,22 @@ const editProduct = (producto) => {
   <!DOCTYPE html>
   <html lang="es">
 <head>
-<header>
-${getNavBar()}  
-</header>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/style/styles.css" />
 <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self';
-        connect-src 'self' http://localhost:4000;
-        img-src 'self' data: http:;
-        style-src 'self' 'unsafe-inline';
-        form-action 'self';">
+content="default-src 'self';
+connect-src 'self' http://localhost:4000;
+img-src 'self' data: http:;
+style-src 'self' 'unsafe-inline';
+form-action 'self';">
 <title> Editar producto</title>
-  </head>
-  <body>
-    <h1>Editar producto</h1>
-    <form action="/dashboard/${productId}?_method=PUT" method="POST" >
+</head>
+<body>
+<header>
+${getNavBar()}  
+</header>
+        <h1>Editar producto</h1>
+        <form action="/dashboard/${productId}?_method=PUT" method="POST" enctype="multipart/form-data">        
 
       <label for="nombre">Nombre</label>
       <input type="text" id="nombre" name="nombre" required>
@@ -55,5 +55,3 @@ module.exports = editProduct;
 
 
 
-
-//enctype="multipart/form-data"

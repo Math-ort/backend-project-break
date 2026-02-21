@@ -82,34 +82,44 @@ const productController = {
         }
     },
     actualizarProducto: async (req, res) => {
-        const { id } = req.params;
-        const { nombre, descripcion, categoria, talla, precio, } = req.body;
+      const { id } = req.params;
+      const { nombre, descripcion, categoria, talla, precio } = req.body;
     
-        try {
-          const newProduct = await Product.findByIdAndUpdate(
-            id,
-            {
-              nombre,
-              descripcion,
-            imagen: req.file ? req.file.path : undefined,            
-              categoria,
-              talla,
-              precio,
-            },
-            {
-              new: true, //para que traiga el documento actualizado
-            },
-          );
-          if (!newProduct) {
-            return res.status(404).json({ error: "Product not found" });
-          };
-          return res.redirect("/dashboard");
-          //res.json(newProduct);
-        } catch (error) {
-          console.error(error.message);
-          res.status(500).json(error.message);
+      try {
+        const updateData = {
+          nombre,
+          descripcion,
+          imagen: req.file ? req.file.path : undefined,            
+          categoria,
+          talla,
+          precio
+
+        };
+    
+        // solo se añade la imagen si se ha subido una nueva
+        //if (req.file) {
+          //updateData.imagen = req.file.path;
+        //}
+    
+        console.log("Archivo recibido:", req.file);
+    
+        const updatedProduct = await Product.findByIdAndUpdate(
+          id,
+          updateData,
+          { new: true } // para que traiga el documento actualizado
+        );
+    
+        if (!updatedProduct) {
+          return res.status(404).json({ error: "Product not found" });
         }
-      },
+    
+        return res.redirect("/dashboard");
+    
+      } catch (error) {
+        console.error(error.message);
+        res.status(500).json({ error: error.message });
+      }
+    },
         deleteProduct: async(req, res) => {
                 const { id } = req.params;
                 try {
