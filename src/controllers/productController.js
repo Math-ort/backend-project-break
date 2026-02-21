@@ -15,7 +15,6 @@ const productController = {
           return res.json({ message: "Products not found" });
         }
         const dashboardHtml = baseHtml(products, categories, "home");
-        console.lohg(dashboardHtml);
         return res.send(dashboardHtml);
       },
       getNewDashboard:(req,res) => {
@@ -52,9 +51,6 @@ const productController = {
             talla,
             precio,
           });
-          console.log(newProduct);
-          console.log(req.body);
-          console.log(req.file);
           return res.redirect("/dashboard");
         } catch (error) {
           console.error(error.messsage);
@@ -106,8 +102,7 @@ const productController = {
           );
           if (!newProduct) {
             return res.status(404).json({ error: "Product not found" });
-          }
-          console.log(newProduct);
+          };
           return res.redirect("/dashboard");
           //res.json(newProduct);
         } catch (error) {

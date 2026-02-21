@@ -16,7 +16,6 @@ const authController = {
             ) {
                 req.session.isLogged = true;
                 req.session.isAdmin = true;
-                console.log("logged admin");
                 return res.redirect("/dashboard");
             }
             const user = await User.findOne({ email });
@@ -32,7 +31,6 @@ const authController = {
             //iniciar sesion usuario
             req.session.isLogged = true;
             req.session.isAdmin = false;
-            console.log("logged user " + user.email);
             return res.redirect("/");
         },
         logout: (req, res) => {
