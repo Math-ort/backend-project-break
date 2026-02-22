@@ -21,7 +21,7 @@ ${getNavBar()}
       <input type="number" id="precio" name="precio" min="0" step="0.01" required>
 
       <label for="categoria">Categoria </label>
-      <input type="text" id="categoria" name="categoria" required placeholder="Ejemplo: Camisetas, Pantalones, Pantalones, Zapatos, Accesorios">
+      <input type="text" id="categoria" name="categoria" required placeholder="Ejemplo: Camisetas, Pantalones, Zapatos, Accesorios">
       
       <label for="talla">Talla </label>
       <input type="text" id="talla" name="talla" required placeholder="Ejemplo: XS S M L XL ">
