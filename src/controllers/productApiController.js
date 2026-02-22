@@ -2,23 +2,21 @@ const Product = require('../models/Product');
 
 const productApiController = {
 
-  // GET /api/products
-  getAllProducts: async (req, res) => {
-    try {
-      const products = await Product.find();
-      res.json({
-        ok: true,
-        total: products.length,
-        data: products
-      });
-    } catch (error) {
-      res.status(500).json({
-        ok: false,
-        message: "Error getting products"
-      });
-    }
-  },
-
+ // GET /api/products
+getAllProducts: async (req, res) => {
+  try {
+     const products = await Product.find();
+    res.json({
+      ok: true,
+      total: products.length,
+      data: products
+    });
+  } catch (error) {
+     res.status(500).json({
+       ok: false,
+       message: "Error getting products"
+     });}
+ },
   // GET /api/products/:id
   getProductById: async (req, res) => {
     try {

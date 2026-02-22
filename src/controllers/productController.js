@@ -20,12 +20,14 @@ const productController = {
       getNewDashboard:(req,res) => {
         res.send(newProductTemplate);
       },
-      getEditProduct:  async (req, res) => {
-        const {id} = req.params;
+      getEditProduct: async (req, res) => {
+        const { id } = req.params;
         const product = await Product.findById(id);
-    const html = editProduct(product);
-    res.send(html)
-  },
+    
+        // Si no es admin, aún podemos mostrar la página pero sin el formulario
+        const html = editProduct(product, req.session.isAdmin);
+        res.send(html);
+    },
       getProducts: async (req,res) => {
         try{
             const products = await Product.find();

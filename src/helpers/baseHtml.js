@@ -3,7 +3,7 @@ const getNavBar = require('./getNavBar');
 const getProductCards = require('./productsCards');
 
 const baseHtml = (products, categories, view = "") => {
-console.log(view);
+
    return `
       <!DOCTYPE html>
       <html lang="es">

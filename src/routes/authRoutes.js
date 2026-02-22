@@ -22,6 +22,7 @@ router.get('/login', authController.getLoginForm);
 router.get('/dashboard/:id/edit',auth, productController.getEditProduct);
 
 
+
 // LOGIN POST
 router.post('/login', authController.login);
 

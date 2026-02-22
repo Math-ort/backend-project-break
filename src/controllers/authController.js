@@ -31,7 +31,7 @@ const authController = {
             //iniciar sesion usuario
             req.session.isLogged = true;
             req.session.isAdmin = false;
-            return res.redirect("/");
+            return res.redirect("/api/products");
         },
         logout: (req, res) => {
                   req.session.destroy((err) => {
