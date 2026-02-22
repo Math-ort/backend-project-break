@@ -11,7 +11,6 @@ const productDetail = (product) => {
     `;
     return html;
   };
-  //TODO: SI ESTOY EN LA PAGINA ELIMINAR QUE NO MUESTRE EL LINK ELIMINAR PRODUCTO
-  module.exports = productDetail;
+  module.exports = productDetail; 
 
 
