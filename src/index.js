@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 dotenv.config();// lectura variables entorno
 const helmet = require('helmet');
+const cors = requiere("cors");
 const methodOverride = require('method-override');
 const session = require('express-session');
 const multer = require('multer');
@@ -13,6 +14,11 @@ const authRoutes = require('./routes/authRoutes');
 
 const {dbConnection} = require('./config/db');
 
+
+app.use(cors({
+  origin: "*" // permitir todos los origenes
+  
+}));
 app.use(helmet({contentSecurityPolicy: false,}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
